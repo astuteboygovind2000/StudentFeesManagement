@@ -1,0 +1,20 @@
+{% extends "AdminDash.html" %}
+{% load static %}
+{% block m1 %}
+<h1> Edit Accountant Profile </h1>
+{% if data %}
+    {% for d in data %}
+        <form method="post" action="http://127.0.0.1:8000/editacntprofile1/">
+            {% csrf_token %}
+            <P>Name<input type="text" name="t1" value="{{d.name}}"/> </P>
+            <P>Address<input type="text" name="t2" value="{{d.address}}"/> </P>
+            <P>Contact<input type="text" name="t3" value="{{d.contact}}"/> </P>
+            <P>Email<input type="text" readonly name="t4" value="{{d.email}}"/> </P>
+            <button type="submit">Save Changes</button>
+        </form>
+    {% endfor %}
+{% elif msg %}
+    <h3>{{msg}}</h3>
+    <p><a href="http://127.0.0.1:8000/accountant_home/">Back To Profile</a> </p>
+{% endif %}
+{% endblock %}

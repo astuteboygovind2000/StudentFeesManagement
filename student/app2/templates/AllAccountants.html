@@ -1,0 +1,27 @@
+{% extends "AdminDash.html" %}
+{% load static %}
+{% block m1 %}
+<h1> All Accountant's Data </h1>
+{% if data %}
+    {% for d in data %}
+        <h3> {{d.name}} </p></h3>
+        <p>
+            Address: {{d.address}} <br/>
+            Email: {{d.email}} <br/>
+            Contact: {{d.contact}}
+        </p>
+        <form method="post" action="http://127.0.0.1:8000/edit_ac_data/">
+            {% csrf_token %}
+            <p><input type="hidden" name="E1" value="{{d.email}}"/> </p>
+            <button type="submit" >Edit Data</button>
+        </form>
+        <form method="post" action="http://127.0.0.1:8000/delete_ac_data/">
+            {% csrf_token %}
+            <p><input type="hidden" name="E1" value="{{d.email}}"/> </p>
+            <button type="submit" >Delete Data</button>
+        </form>
+    {% endfor %}
+{% elif msg %}
+    <h3>{{msg}}</h3>
+{% endif %}
+{% endblock %}

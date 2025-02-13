@@ -1,0 +1,20 @@
+{% extends "AdminDash.html" %}
+{% load static %}
+{% block m1 %}
+<h1>Delete Accountant</h1>
+{% if data %}
+    {% for d in data %}
+        <form method="post" action="http://127.0.0.1:8000/delete_ac_data1/">
+            {% csrf_token %}
+            <p>Name:<input readonly value="{{d.name}}"/> </p>
+            <p>Address:<input readonly value="{{d.address}}"/> </p>
+            <p>Contact:<input readonly value="{{d.contact}}"/> </p>
+            <p>Email:<input readonly name="E1" value="{{d.email}}"/> </p>
+            <button type="submit" >Confirm Delete</button>
+        </form>
+    {% endfor %}
+{% elif msg %}
+    <h3>{{msg}}</h3>
+    <a href="http://127.0.0.1:8000/allaccountants/"> Click to See Changes </a>
+{% endif %}
+{% endblock %}
